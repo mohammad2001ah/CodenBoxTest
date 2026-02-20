@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="3" total="4" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-02-21T00:50:14 EET" name="Default suite" finished-at="2026-02-21T00:50:33 EET" duration-ms="19533">
+    <groups>
+    </groups>
+    <test started-at="2026-02-21T00:50:14 EET" name="Default test" finished-at="2026-02-21T00:50:33 EET" duration-ms="19533">
+      <class name="MyTestCase.CodeBoxTest">
+        <test-method is-config="true" signature="MySetUp()[pri:0, instance:MyTestCase.CodeBoxTest@4aa83f4f]" started-at="2026-02-21T00:50:14 EET" name="MySetUp" finished-at="2026-02-21T00:50:33 EET" duration-ms="19305" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- MySetUp -->
+        <test-method signature="CheckBoxSelect()[pri:4, instance:MyTestCase.CodeBoxTest@4aa83f4f]" started-at="2026-02-21T00:50:33 EET" name="CheckBoxSelect" finished-at="2026-02-21T00:50:33 EET" duration-ms="160" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CheckBoxSelect -->
+      </class> <!-- MyTestCase.CodeBoxTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
