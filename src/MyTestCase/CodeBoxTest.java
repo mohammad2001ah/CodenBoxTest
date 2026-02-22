@@ -82,11 +82,11 @@ public class CodeBoxTest {
 	public void OpenWindow() throws InterruptedException {
 		WebElement openWindowButton = driver.findElement(By.id("openwindow"));
 		openWindowButton.click();
-		
+
 		Set<String> handels = driver.getWindowHandles();
 		List<String> allTabs = new ArrayList<>(handels);
 		driver.switchTo().window(allTabs.get(1));
-		
+
 		System.out.println(driver.getTitle());
 		driver.switchTo().window(allTabs.get(0));
 		System.out.println(driver.getTitle());
@@ -95,11 +95,11 @@ public class CodeBoxTest {
 	@Test(priority = 6, enabled = false)
 	public void NewTab() throws InterruptedException {
 		driver.findElement(By.id("opentab")).click();
-		
+
 		Set<String> handels = driver.getWindowHandles();
 		List<String> allTabs = new ArrayList<>(handels);
 		driver.switchTo().window(allTabs.get(1));
-		
+
 		Thread.sleep(2000);
 		System.out.println(driver.getTitle());
 		driver.switchTo().window(allTabs.get(0));
@@ -120,17 +120,38 @@ public class CodeBoxTest {
 		boolean ActualValue = driver.switchTo().alert().getText().contains(myname);
 		Assert.assertEquals(ActualValue, true);
 		driver.switchTo().alert().dismiss();
+//		driver.switchTo().alert().accept();
 	}
 
-	@Test(priority = 8,enabled = false)
+	@Test(priority = 8, enabled = true)
 	public void TheTable() {
 
 		WebElement TheTable = driver.findElement(By.id("product"));
 
-		List<WebElement> AllData = TheTable.findElements(By.tagName("td"));
-
+		List<WebElement> AllData1 = TheTable.findElements(By.tagName("th"));
 		System.out.println();
-		driver.findElement(By.id("name")).sendKeys(AllData.get(0).getText());
+		for (int i = 0; i < AllData1.size(); i++) {
+			System.out.println(AllData1.get(i).getText());
+		}
+		
+		System.out.println("*************");
+		
+		List<WebElement> AllData2 = TheTable.findElements(By.tagName("td"));
+		System.out.println();
+//		for (int i = 0; i < AllData2.size(); i++) {
+//			System.out.println(AllData2.get(i).getText());
+//		}
+		System.out.println(AllData2.get(1).getText());
+		
+		System.out.println("*************");
+		List<WebElement> AllData3 = TheTable.findElements(By.tagName("tr"));
+		System.out.println();
+		for (int i = 0; i < AllData3.size(); i++) {
+			System.out.println(AllData3.get(i).getText());
+		}
+		
+		
+		
 	}
 
 }
