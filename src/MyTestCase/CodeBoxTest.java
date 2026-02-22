@@ -82,9 +82,11 @@ public class CodeBoxTest {
 	public void OpenWindow() throws InterruptedException {
 		WebElement openWindowButton = driver.findElement(By.id("openwindow"));
 		openWindowButton.click();
+		
 		Set<String> handels = driver.getWindowHandles();
 		List<String> allTabs = new ArrayList<>(handels);
 		driver.switchTo().window(allTabs.get(1));
+		
 		System.out.println(driver.getTitle());
 		driver.switchTo().window(allTabs.get(0));
 		System.out.println(driver.getTitle());
@@ -93,9 +95,11 @@ public class CodeBoxTest {
 	@Test(priority = 6, enabled = false)
 	public void NewTab() throws InterruptedException {
 		driver.findElement(By.id("opentab")).click();
+		
 		Set<String> handels = driver.getWindowHandles();
 		List<String> allTabs = new ArrayList<>(handels);
 		driver.switchTo().window(allTabs.get(1));
+		
 		Thread.sleep(2000);
 		System.out.println(driver.getTitle());
 		driver.switchTo().window(allTabs.get(0));
