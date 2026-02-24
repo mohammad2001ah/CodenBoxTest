@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="7" total="8" passed="1" failed="0" skipped="0">
+<testng-results ignored="11" total="12" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-23T00:06:54 EET" name="Default suite" finished-at="2026-02-23T00:07:18 EET" duration-ms="23374">
+  <suite started-at="2026-02-25T00:52:38 EET" name="Default suite" finished-at="2026-02-25T00:52:53 EET" duration-ms="15264">
     <groups>
     </groups>
-    <test started-at="2026-02-23T00:06:54 EET" name="Default test" finished-at="2026-02-23T00:07:18 EET" duration-ms="23374">
+    <test started-at="2026-02-25T00:52:38 EET" name="Default test" finished-at="2026-02-25T00:52:53 EET" duration-ms="15264">
       <class name="MyTestCase.CodeBoxTest">
-        <test-method is-config="true" signature="MySetUp()[pri:0, instance:MyTestCase.CodeBoxTest@61e94def]" started-at="2026-02-23T00:06:54 EET" name="MySetUp" finished-at="2026-02-23T00:07:17 EET" duration-ms="22874" status="PASS">
+        <test-method is-config="true" signature="MySetUp()[pri:0, instance:MyTestCase.CodeBoxTest@5b068087]" started-at="2026-02-25T00:52:38 EET" name="MySetUp" finished-at="2026-02-25T00:52:45 EET" duration-ms="7718" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MySetUp -->
-        <test-method signature="TheTable()[pri:8, instance:MyTestCase.CodeBoxTest@61e94def]" started-at="2026-02-23T00:07:17 EET" name="TheTable" finished-at="2026-02-23T00:07:18 EET" duration-ms="443" status="PASS">
+        <test-method signature="Calender()[pri:12, instance:MyTestCase.CodeBoxTest@5b068087]" started-at="2026-02-25T00:52:45 EET" name="Calender" finished-at="2026-02-25T00:52:53 EET" duration-ms="7481" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TheTable -->
+        </test-method> <!-- Calender -->
       </class> <!-- MyTestCase.CodeBoxTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

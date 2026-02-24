@@ -1,22 +1,26 @@
 package MyTestCase;
 
-import java.nio.channels.SelectableChannel;
-import java.sql.Time;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -123,7 +127,7 @@ public class CodeBoxTest {
 //		driver.switchTo().alert().accept();
 	}
 
-	@Test(priority = 8, enabled = true)
+	@Test(priority = 8, enabled = false)
 	public void TheTable() {
 
 		WebElement TheTable = driver.findElement(By.id("product"));
@@ -150,8 +154,58 @@ public class CodeBoxTest {
 			System.out.println(AllData3.get(i).getText());
 		}
 		
+	}
+	
+	@Test(priority = 9,enabled = false)
+	public void HideAndShow() {
+		WebElement HideButton=driver.findElement(By.id("hide-textbox"));
+		WebElement ShowButton=driver.findElement(By.id("show-textbox"));
+		WebElement InputBox=driver.findElement(By.id("displayed-text"));
 		
+		HideButton.click();
+		boolean ActualResult=InputBox.isDisplayed();
+		boolean ExpectedResult=false;
+		Assert.assertEquals(ActualResult, ExpectedResult);
+	}
+	@Test(priority = 10,enabled = false)
+	public void EnabledAndDisabled() {
+		WebElement EnableButton=driver.findElement(By.id("enabled-button"));
+		WebElement DisabledButton=driver.findElement(By.id("disabled-button"));
+		WebElement InputBox=driver.findElement(By.id("enabled-example-input"));
+		EnableButton.click();
+		InputBox.sendKeys("kjbfui");
+		boolean ActualResult=InputBox.isDisplayed();
+		boolean ExpectedResult=true;
+		Assert.assertEquals(ActualResult, ExpectedResult);
+	}
+	
+	@Test(priority = 11,enabled = false)
+	public void MouseHover() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0,1900)");
+		Thread.sleep(2000);
+		
+		WebElement mouseHoverButton=driver.findElement(By.id("mousehover"));
+		Actions action=new Actions(driver);
+		action.moveToElement(mouseHoverButton).build().perform();
+		WebElement reload=driver.findElement(By.linkText("Reload"));
+		reload.click();
 		
 	}
-
+	
+	@Test(priority = 12,enabled = true)
+	public void Calender() throws InterruptedException, IOException {
+		
+		Date mydate= new Date();
+		String fileName=mydate.toString().replace(":", "-");
+		driver.findElement(By.linkText("Booking Calendar")).click();
+		Set<String> handels = driver.getWindowHandles();
+		List<String> allTabs = new ArrayList<>(handels);
+		driver.switchTo().window(allTabs.get(1));
+		Thread.sleep(7000);
+		TakesScreenshot ts=(TakesScreenshot)driver;
+		File file=ts.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(file, new File("./screenShot/"+fileName+".jpg"));
+	}
+	
 }
