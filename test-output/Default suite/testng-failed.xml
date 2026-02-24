@@ -5,7 +5,7 @@
     <classes>
       <class name="MyTestCase.CodeBoxTest">
         <methods>
-          <include name="Calender"/>
+          <include name="AddDataFromDB"/>
           <include name="MySetUp"/>
         </methods>
       </class> <!-- MyTestCase.CodeBoxTest -->

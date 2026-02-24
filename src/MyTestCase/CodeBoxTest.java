@@ -1,13 +1,19 @@
 package MyTestCase;
 
+import java.sql.Statement;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -28,12 +34,24 @@ public class CodeBoxTest {
 
 	WebDriver driver = new EdgeDriver();
 	String myWebSite = "https://codenboxautomationlab.com/practice/";
-
 	Random rand = new Random();
+	
+	Connection con;
+	Statement stmt;
+	ResultSet rs;
+	
+	String FirstName;
+	String LastName;
+	String PhoneNumber;
+	
+	int randomEmailNumber = rand.nextInt(5478);
+	int randomEmailNumber2 = rand.nextInt(978);
+	
 
 	@BeforeTest
-	public void MySetUp() {
+	public void MySetUp() throws SQLException {
 		driver.get(myWebSite);
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "2001");
 		String ParentWindow = driver.getWindowHandle();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
@@ -206,10 +224,38 @@ public class CodeBoxTest {
 		File file=ts.getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(file, new File("./screenShot/"+fileName+".jpg"));
 	}
-	@Test(priority = 13,enabled = true)
+	
+	@Test(priority = 13,enabled = false)
 	public void Iframe() {
 		driver.switchTo().frame("iframe-name"); 
 		driver.findElement(By.cssSelector(".ct-mobile-meta-item.btn-nav-mobile.open-menu")).click();
+	}
+	
+	@Test(priority = 14,enabled = true)
+	public void AddDataFromDB() throws SQLException {
+		stmt = con.createStatement();
+		driver.findElement(By.linkText("Booking Calendar")).click();
+		Set<String> handels = driver.getWindowHandles();
+		List<String> allTabs = new ArrayList<>(handels);
+		driver.switchTo().window(allTabs.get(1));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0,700)");
+		
+		String Query = "select * from customers";
+		rs=stmt.executeQuery(Query);
+		if (rs.next()) {
+			FirstName = rs.getString("customerName");
+			LastName = rs.getString("contactLastName");
+			PhoneNumber = rs.getString("phone");
+			
+			driver.findElement(By.id("name1")).sendKeys(FirstName);
+			driver.findElement(By.id("secondname1")).sendKeys(LastName);
+			String TheEmail = FirstName + LastName + randomEmailNumber + randomEmailNumber2 + "@gmail.com";
+			driver.findElement(By.id("email1")).sendKeys(TheEmail);
+			driver.findElement(By.id("phone1")).sendKeys(PhoneNumber);
+		}
+		con.close();
 	}
 	
 }
