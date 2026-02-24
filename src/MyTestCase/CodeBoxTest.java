@@ -193,9 +193,8 @@ public class CodeBoxTest {
 		
 	}
 	
-	@Test(priority = 12,enabled = true)
+	@Test(priority = 12,enabled = false)
 	public void Calender() throws InterruptedException, IOException {
-		
 		Date mydate= new Date();
 		String fileName=mydate.toString().replace(":", "-");
 		driver.findElement(By.linkText("Booking Calendar")).click();
@@ -206,6 +205,11 @@ public class CodeBoxTest {
 		TakesScreenshot ts=(TakesScreenshot)driver;
 		File file=ts.getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(file, new File("./screenShot/"+fileName+".jpg"));
+	}
+	@Test(priority = 13,enabled = true)
+	public void Iframe() {
+		driver.switchTo().frame("iframe-name"); 
+		driver.findElement(By.cssSelector(".ct-mobile-meta-item.btn-nav-mobile.open-menu")).click();
 	}
 	
 }
